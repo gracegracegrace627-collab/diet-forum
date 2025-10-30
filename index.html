@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>与小艾的聊天</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #f5f7fa;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .chat-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    .message {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s ease;
+    }
+    .message.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #ccc;
+      flex-shrink: 0;
+    }
+    .bubble {
+      padding: 10px 14px;
+      border-radius: 16px;
+      max-width: 65%;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+    .name {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 3px;
+    }
+    /* 小艾在左边 */
+    .message.aiai {
+      flex-direction: row;
+    }
+    .message.aiai .bubble {
+      background-color: #ffffff;
+      border: 1px solid #e1e1e1;
+      margin-left: 10px;
+    }
+    /* 你在右边 */
+    .message.you {
+      flex-direction: row-reverse;
+    }
+    .message.you .bubble {
+      background-color: #dcf8c6;
+      margin-right: 10px;
+    }
+    .divider {
+      text-align: center;
+      color: #999;
+      font-size: 13px;
+      margin: 25px 0;
+      opacity: 0;
+      transition: opacity 0.8s;
+    }
+    .divider.show {
+      opacity: 1;
+    }
+    .center-text {
+      text-align: center;
+      color: #777;
+      margin-top: 30px;
+      opacity: 0;
+      transition: opacity 0.8s;
+    }
+    .center-text.show {
+      opacity: 1;
+    }
+    .next-btn {
+      display: none;
+      margin: 30px auto;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .next-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container" id="chatContainer"></div>
+  <div class="center-text" id="systemText">三天后，你依然联系不上小艾……</div>
+  <button class="next-btn" id="nextBtn" onclick="openNext()">🔍 打开她的电脑</button>
+
+  <script>
+    const dialogues = [
+      // —— 两个月前 ——
+      { speaker: 'aiai', name: '小艾', text: '嘿嘿~ 我最近开始健身啦，感觉整个人都精神多了！' },
+      { speaker: 'you', name: '你', text: '真的啊？你这几天都在健身房打卡吧？太拼了。' },
+      { speaker: 'aiai', name: '小艾', text: '哈哈~ 没办法，想保持好身材嘛！要不你也跟我一起？我帮你分析身体数据！' },
+      { speaker: 'you', name: '你', text: '我可没你那毅力……不过你前几天提到的那个减肥论坛，挺神秘的。' },
+      { speaker: 'aiai', name: '小艾', text: '哦，那个论坛超棒的！每天都有很多人分享训练记录和餐单。' },
+      { speaker: 'you', name: '你', text: '听起来还挺专业的。' },
+      { speaker: 'aiai', name: '小艾', text: '对呀，你要不要一起呀~' },
+      { speaker: 'you', name: '你', text: '论坛我就不加入了，怪麻烦的。但是和你一起锻炼是个好主意。' },
+      { speaker: 'aiai', name: '小艾', text: '那我锻炼的时候叫上你吧，记录我数据的时候，也顺便帮你记录～' },
+      { speaker: 'you', name: '你', text: '那真的太好啦！' },
+
+      // —— 两个月后分隔线 ——
+      { divider: true, text: '—— 两个月后 ——' },
+
+      // —— 现在时空 ——
+      { speaker: 'aiai', name: '小艾', text: '今天的训练数据我帮你看过啦，体脂又降了一点哦～真棒！' },
+      { speaker: 'you', name: '你', text: '真的吗？我还以为最近没什么变化。看来坚持有用啊。' },
+      { speaker: 'aiai', name: '小艾', text: '当然啦，你的睡眠和饮食也改善了不少。照这个节奏，目标很快就能达成。' },
+      { speaker: 'you', name: '你', text: '多亏了你每天监督我，不然我早放弃了。' },
+      { speaker: 'aiai', name: '小艾', text: '哈哈，说什么呢～我只是帮你分析数据而已。' },
+      { speaker: 'you', name: '你', text: '你最近是不是挺忙？感觉你这两天回复都慢了。' },
+      { speaker: 'aiai', name: '小艾', text: '嗯……有点事在忙。没关系，等我忙完再详细跟你说哈。' },
+      { speaker: 'you', name: '你', text: '好吧，那你注意休息，别太累了。' },
+      { speaker: 'aiai', name: '小艾', text: '放心啦～对了，我电脑好像忘在你家了😅 明天来拿。' }
+    ];
+
+    let index = 0;
+    const container = document.getElementById('chatContainer');
+    const systemText = document.getElementById('systemText');
+    const nextBtn = document.getElementById('nextBtn');
+
+    document.body.addEventListener('click', showNextMessage);
+
+    function showNextMessage() {
+      if (index < dialogues.length) {
+        const msg = dialogues[index];
+        if (msg.divider) {
+          const divider = document.createElement('div');
+          divider.classList.add('divider');
+          divider.textContent = msg.text;
+          container.appendChild(divider);
+          setTimeout(() => divider.classList.add('show'), 100);
+        } else {
+          const div = document.createElement('div');
+          div.classList.add('message', msg.speaker);
+          div.innerHTML = `
+            <div class="avatar"></div>
+            <div>
+              <div class="name">${msg.name}</div>
+              <div class="bubble">${msg.text}</div>
+            </div>
+          `;
+          container.appendChild(div);
+          setTimeout(() => div.classList.add('show'), 50);
+        }
+        container.scrollTop = container.scrollHeight;
+        index++;
+      } else if (index === dialogues.length) {
+        systemText.classList.add('show');
+        index++;
+      } else if (index > dialogues.length) {
+        nextBtn.style.display = 'block';
+        document.body.removeEventListener('click', showNextMessage);
+      }
+    }
+
+    function openNext() {
+      window.location.href = 'desktop.html';
+    }
+  </script>
+</body>
+</html>
