@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>kukuso 搜索结果 - 艾简霏</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans SC", "Segoe UI", sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    header {
+      background: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .logo {
+      color: #3ba9ff;
+      font-size: 28px;
+      font-weight: 700;
+      margin-right: 20px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .search-box {
+      flex: 1;
+      max-width: 600px;
+      display: flex;
+      background: #fff;
+      border-radius: 50px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    .search-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 50px 0 0 50px;
+    }
+    .search-box button {
+      border: none;
+      background: #3ba9ff;
+      color: white;
+      padding: 0 20px;
+      border-radius: 0 50px 50px 0;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .search-box button:hover {
+      background: #1d8be2;
+    }
+
+    .results {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .result {
+      margin-bottom: 30px;
+    }
+
+    .result a.title {
+      color: #1a0dab;
+      font-size: 18px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .result a.title:hover {
+      text-decoration: underline;
+    }
+
+    .link {
+      color: #006621;
+      font-size: 13px;
+      margin: 3px 0;
+    }
+
+    .desc {
+      color: #545454;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #999;
+      font-size: 13px;
+    }
+
+    .highlight {
+      background-color: #fff9cc;
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="search.html" class="logo">kukuso</a>
+    <div class="search-box">
+      <input type="text" value="艾简霏" id="searchInput">
+      <button id="searchBtn">搜索</button>
+    </div>
+  </header>
+
+  <div class="results">
+    <div class="result">
+      <a href="aijianfeiinfo.html" class="title">艾简霏的个人主页</a>
+      <div class="link">https://kukuso.social/aijianfei</div>
+      <div class="desc">
+        健身打卡、体脂变化、轻食分享。<span class="highlight">艾简霏</span>是晴朗轻体馆的活跃成员，
+        分享每日健身心得与生活记录。点击进入查看她的最新动态。
+      </div>
+    </div>
+
+    <div class="result">
+      <a href="#" class="title">晴朗轻体馆官方论坛 - 减脂分享区</a>
+      <div class="link">https://sunnyshape.fit/forum/health</div>
+      <div class="desc">
+        晴朗市最受欢迎的健康社区，数千名会员每日更新健身计划、饮食打卡与体重曲线。
+      </div>
+    </div>
+
+    <div class="result">
+      <a href="#" class="title">如何安全地降低体脂率</a>
+      <div class="link">https://fitknow.cn/articles/fatloss-guide</div>
+      <div class="desc">
+        专家建议每周体重下降不超过 1%，通过力量训练与热量管理维持代谢健康。
+      </div>
+    </div>
+
+    <div class="result">
+      <a href="#" class="title">晴光市健康生活俱乐部</a>
+      <div class="link">https://qingguanglife.org</div>
+      <div class="desc">
+        推广健康饮食与社区运动文化，提供健身数据记录与线上交流服务。
+      </div>
+    </div>
+
+    <div class="result">
+      <a href="#" class="title">kukuso 健康搜索 · 探索更轻盈的世界</a>
+      <div class="link">https://kukuso.com/fit</div>
+      <div class="desc">
+        搜索健身、饮食、心理健康相关文章，帮助你更好地了解自己的身体。
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 kukuso 搜索引擎 - 虚构网站示例
+  </footer>
+
+  <script>
+    const searchBtn = document.getElementById('searchBtn');
+    const input = document.getElementById('searchInput');
+
+    function doSearch() {
+      const value = input.value.trim();
+      if (value === '艾简霏') {
+        window.location.href = 'search_result.html';
+      } else {
+        alert('未找到相关结果。');
+      }
+    }
+
+    searchBtn.addEventListener('click', doSearch);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') doSearch();
+    });
+  </script>
+
+</body>
+</html>
