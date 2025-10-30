@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>艾简霏的电脑</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: url('https://cdn.pixabay.com/photo/2016/11/29/05/55/active-1867436_1280.jpg') no-repeat center center/cover;
+      font-family: "Microsoft YaHei", sans-serif;
+      color: white;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* 登录信息 */
+    .login-info {
+      position: absolute;
+      bottom: 10px;
+      left: 15px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.85);
+      text-shadow: 0 0 3px rgba(0,0,0,0.5);
+    }
+
+    /* 桌面图标布局 */
+    .desktop {
+      display: grid;
+      grid-template-columns: repeat(5, 120px);
+      justify-content: center;
+      align-content: center;
+      height: 100%;
+      gap: 50px;
+    }
+
+    .icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.2s;
+      text-align: center;
+    }
+
+    .icon img {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 0 4px rgba(0,0,0,0.5));
+    }
+
+    /* 鼠标悬停轻微抖动 */
+    .icon:hover {
+      animation: shake 0.3s ease-in-out;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(-2px, 0); }
+      50% { transform: translate(2px, 0); }
+      75% { transform: translate(-2px, 0); }
+      100% { transform: translate(0, 0); }
+    }
+
+    /* 弹出层（备忘录） */
+    .calendar-popup {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255,255,255,0.95);
+      color: #333;
+      border-radius: 10px;
+      padding: 20px 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      width: 320px;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .calendar-popup h2 {
+      margin: 0 0 10px 0;
+      font-size: 20px;
+      color: #222;
+    }
+
+    .calendar {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+
+    .calendar th, .calendar td {
+      border: 1px solid #ddd;
+      padding: 6px;
+      width: 14%;
+    }
+
+    .calendar th {
+      background-color: #f0f0f0;
+    }
+
+    .note {
+      font-size: 13px;
+      margin-top: 8px;
+      color: #666;
+    }
+
+    .close-btn {
+      margin-top: 12px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="desktop">
+    <div class="icon" id="myComputer">
+      <img src="https://cdn-icons-png.flaticon.com/512/179/179386.png" alt="我的电脑">
+      <div>我的电脑</div>
+    </div>
+
+    <div class="icon" id="browser">
+      <img src="https://cdn-icons-png.flaticon.com/512/1042/1042339.png" alt="kukusou 浏览器">
+      <div>kukusou浏览器</div>
+    </div>
+
+    <div class="icon" id="folder">
+      <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" alt="健身数据文件夹">
+      <div>健身数据</div>
+    </div>
+
+    <div class="icon" id="note">
+      <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" alt="备忘录">
+      <div>备忘录</div>
+    </div>
+
+    <div class="icon" id="trash">
+      <img src="https://cdn-icons-png.flaticon.com/512/3096/3096673.png" alt="垃圾箱">
+      <div>垃圾箱</div>
+    </div>
+  </div>
+
+  <div class="login-info">已登录: 艾简霏（aijianfei0602@mm.com）</div>
+
+  <!-- 备忘录弹窗 -->
+  <div class="calendar-popup" id="calendarPopup">
+    <h2>2024年6月</h2>
+    <table class="calendar">
+      <tr><th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td></tr>
+      <tr><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+      <tr><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+      <tr><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td></tr>
+      <tr><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr>
+    </table>
+    <div class="note">这个月就到了我26岁的生日啦！</div>
+    <button class="close-btn" onclick="closeCalendar()">关闭</button>
+  </div>
+
+  <script>
+    document.getElementById('browser').addEventListener('click', () => {
+      window.location.href = 'search.html';
+    });
+
+    document.getElementById('folder').addEventListener('click', () => {
+      window.location.href = 'document.html';
+    });
+
+    document.getElementById('note').addEventListener('click', () => {
+      document.getElementById('calendarPopup').style.display = 'block';
+    });
+
+    function closeCalendar() {
+      document.getElementById('calendarPopup').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
