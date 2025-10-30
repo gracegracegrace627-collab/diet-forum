@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>晴朗轻体馆 SunnyShape</title>
+  <style>
+    body {
+      font-family: 'Poppins', 'Noto Sans SC', sans-serif;
+      margin: 0;
+      background: linear-gradient(to bottom right, #E8F9FD, #FFFBE7);
+      background-attachment: fixed;
+      color: #333;
+    }
+    header {
+      background: #5BC0EB;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+    .login-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      background: #FA7921;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: 0.3s;
+    }
+    .login-btn:hover {
+      background: #FDE74C;
+      color: #333;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #FDE74C;
+      padding: 0.8rem;
+      flex-wrap: wrap;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      margin: 0.5rem 1rem;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: #FA7921;
+    }
+    section {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      color: #5BC0EB;
+      border-left: 6px solid #FA7921;
+      padding-left: 10px;
+    }
+    .card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      margin: 1rem 0;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.02);
+    }
+    .img-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .img-card img {
+      width: 100%;
+      border-radius: 15px;
+      transition: 0.4s ease;
+    }
+    .img-card img:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      background: #5BC0EB;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+    }
+    .forum {
+      background: #FFFBE7;
+      border: 2px dashed #9BC53D;
+      border-radius: 10px;
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .forum:hover {
+      background: #FFF3D4;
+      transform: scale(1.02);
+    }
+
+    /* 登录弹窗 */
+    .login-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    .login-box {
+      background: #fff;
+      border-radius: 15px;
+      padding: 2rem;
+      width: 80%;
+      max-width: 320px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      animation: pop 0.3s ease;
+    }
+    @keyframes pop {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .login-box h3 { color: #5BC0EB; margin-bottom: 1rem; }
+    .login-box input {
+      width: 100%;
+      padding: 0.6rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 0.95rem;
+    }
+    .login-box button {
+      width: 100%;
+      padding: 0.6rem;
+      background: #5BC0EB;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+    .login-box button:hover {
+      background: #FA7921;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>☀️ 晴朗轻体馆 SunnyShape</h1>
+    <p>在晴朗市，做最轻盈的自己！</p>
+    <button class="login-btn" id="loginBtn">登录</button>
+  </header>
+
+  <nav>
+    <a href="#home">首页</a>
+    <a href="#science">科学专栏</a>
+    <a href="#sport">运动天地</a>
+    <a href="#food">饮食轻指南</a>
+    <a href="#forum" id="forumLink">减肥论坛</a>
+    <a href="#about">关于我们</a>
+  </nav>
+
+  <section id="home">
+    <h2>🌤️ 欢迎来到晴朗轻体馆</h2>
+    <div class="img-card">
+      <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b54?auto=format&fit=crop&w=1000&q=80" alt="健身照片">
+    </div>
+    <div class="card">
+      <p>这里是晴朗市最温柔的减肥角落。我们相信，减肥不是折磨，而是一场和自己重逢的旅程。一起让身体更轻盈，心情更晴朗！</p>
+    </div>
+  </section>
+
+  <section id="science">
+    <h2>📘 科学专栏</h2>
+    <div class="card"><b>脂肪，其实是个“储能专家”</b> — 关键在于制造温和的热量缺口。</div>
+    <div class="card"><b>节食越狠，反弹越快</b> — 维持代谢的关键是合理热量赤字。</div>
+    <div class="card"><b>体重秤不会告诉你的真相</b> — 记录腰围和体脂更可靠。</div>
+    <div class="card"><b>睡好7小时比运动30分钟更重要</b> — 睡眠是隐形燃脂法。</div>
+  </section>
+
+  <section id="sport">
+    <h2>🏋️‍♀️ 运动天地</h2>
+    <div class="img-card">
+      <img src="https://images.unsplash.com/photo-1571019613914-85f342c55f87?auto=format&fit=crop&w=1000&q=80" alt="运动图">
+    </div>
+    <div class="card"><b>晴光公园跑道</b> — 晴朗湖畔的2.5公里跑步天堂。</div>
+    <div class="card"><b>FitOne健身中心</b> — 私教课程+体脂分析服务。</div>
+    <div class="card"><b>蓝天游泳馆</b> — 关节友好的水中有氧训练。</div>
+  </section>
+
+  <section id="food">
+    <h2>🥗 饮食轻指南</h2>
+    <div class="img-card">
+      <img src="https://images.unsplash.com/photo-1604908177231-0e31b1cc74e9?auto=format&fit=crop&w=1000&q=80" alt="轻食图">
+    </div>
+    <div class="card">
+      <p>三餐均衡、充足水分、聪明摄入碳水。偶尔放纵不算失败，健康饮食是长期习惯！</p>
+    </div>
+  </section>
+
+  <section id="forum">
+    <h2>💬 减肥论坛</h2>
+    <div class="forum" id="forumBox">
+      <p>在晴朗轻体馆社区，与来自晴朗市的伙伴们一起打卡、分享、互相鼓励！<br><br><b>点击进入论坛 →</b></p>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>☀️ 关于我们</h2>
+    <div class="card">
+      <p>晴朗轻体馆由一群热爱健康与生活的人创建，我们致力于用科学、温柔、积极的方式帮助每一位市民实现更轻盈的自己。</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 晴朗轻体馆 SunnyShape | 虚构网站示例</p>
+  </footer>
+
+  <!-- 登录弹窗 -->
+  <div class="login-modal" id="loginModal">
+    <div class="login-box">
+      <h3>🔐 登录 SunnyShape</h3>
+      <input type="text" id="username" placeholder="请输入账户">
+      <input type="password" id="password" placeholder="请输入密码">
+      <button id="submitLogin">登录</button>
+    </div>
+  </div>
+
+  <script>
+    const loginBtn = document.getElementById('loginBtn');
+    const modal = document.getElementById('loginModal');
+    const submitLogin = document.getElementById('submitLogin');
+    const forumBox = document.getElementById('forumBox');
+
+    // 打开登录弹窗
+    loginBtn.addEventListener('click', () => modal.style.display = 'flex');
+
+    // 点击背景关闭
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+
+    // 回车登录
+    document.getElementById('password').addEventListener('keydown', e => {
+      if (e.key === 'Enter') submitLogin.click();
+    });
+
+    // 登录逻辑（已修改账号）
+    submitLogin.addEventListener('click', () => {
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+      if (user === '122345' && pass === '19980602') {
+        alert('登录成功，欢迎回来艾简霏！');
+        window.location.href = 'aijianfeiinfo.html';
+      } else {
+        alert('账号或密码错误，请重试！');
+      }
+    });
+
+    // 点击论坛区块跳转
+    forumBox.addEventListener('click', () => {
+      window.open('forum.html', '_blank');
+    });
+  </script>
+
+</body>
+</html>
