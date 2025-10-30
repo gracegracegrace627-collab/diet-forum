@@ -167,9 +167,12 @@
     // 搜索逻辑
     function doSearch() {
       const value = input.value.trim();
-      if (value === '') return;
+      if (!value) return;
+
       if (value.includes('艾简霏')) {
         window.location.href = 'search_result.html';
+      } else if (value.includes('晴朗轻体馆')) {
+        window.location.href = 'search_result2.html';
       } else {
         alert('未找到相关内容。');
       }
