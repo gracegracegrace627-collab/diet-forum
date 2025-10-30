@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>kukuso 搜索</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans SC", "Segoe UI", sans-serif;
+      background: linear-gradient(to bottom right, #f4fbff, #fff9e7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 48px;
+      color: #3ba9ff;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      font-weight: 800;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .search-box {
+      display: flex;
+      width: 80%;
+      max-width: 600px;
+      background: white;
+      border-radius: 50px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .search-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      padding: 15px 20px;
+      border-radius: 50px 0 0 50px;
+    }
+
+    .search-box button {
+      border: none;
+      background: #3ba9ff;
+      color: white;
+      padding: 0 25px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 0 50px 50px 0;
+      transition: 0.3s;
+    }
+
+    .search-box button:hover {
+      background: #1d8be2;
+    }
+
+    .favorites {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .favorites h3 {
+      color: #666;
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    .fav-link {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 10px 20px;
+      background: white;
+      border-radius: 30px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      color: #0077cc;
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 15px;
+    }
+
+    .fav-link:hover {
+      background: #eaf5ff;
+      transform: scale(1.05);
+    }
+
+    /* 弹出窗口 */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      width: 80%;
+      max-width: 700px;
+      height: 80%;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal iframe {
+      flex: 1;
+      border: none;
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .close-btn {
+      background: #ff5555;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-bottom: 10px;
+      align-self: flex-end;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>kukuso</h1>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="搜索或输入网址..." />
+    <button id="searchBtn">搜索</button>
+  </div>
+
+  <div class="favorites">
+    <h3>⭐ 收藏链接</h3>
+    <a href="#" class="fav-link" id="favLink">艾简霏的社交媒体主页</a>
+  </div>
+
+  <!-- 弹出社交媒体页 -->
+  <div class="modal" id="socialModal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeModal">关闭</button>
+      <iframe src="ajfsocialmedia.html" title="艾简霏社交主页"></iframe>
+    </div>
+  </div>
+
+  <script>
+    const searchBtn = document.getElementById('searchBtn');
+    const input = document.getElementById('searchInput');
+    const favLink = document.getElementById('favLink');
+    const modal = document.getElementById('socialModal');
+    const closeModal = document.getElementById('closeModal');
+
+    // 搜索逻辑
+    function doSearch() {
+      const value = input.value.trim();
+      if (value === '') return;
+      if (value.includes('艾简霏')) {
+        window.location.href = 'search_result.html';
+      } else {
+        alert('未找到相关内容。');
+      }
+    }
+
+    searchBtn.addEventListener('click', doSearch);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') doSearch();
+    });
+
+    // 收藏链接点击 → 弹窗显示社交主页
+    favLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      modal.style.display = 'flex';
+    });
+
+    closeModal.addEventListener('click', () => modal.style.display = 'none');
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+  </script>
+
+</body>
+</html>
