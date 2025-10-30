@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>kukuso 搜索结果 - 晴朗轻体馆</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans SC", "Segoe UI", sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    header {
+      background: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .logo {
+      color: #3ba9ff;
+      font-size: 28px;
+      font-weight: 700;
+      margin-right: 20px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .search-box {
+      flex: 1;
+      max-width: 600px;
+      display: flex;
+      background: #fff;
+      border-radius: 50px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    .search-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 50px 0 0 50px;
+    }
+    .search-box button {
+      border: none;
+      background: #3ba9ff;
+      color: white;
+      padding: 0 20px;
+      border-radius: 0 50px 50px 0;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .search-box button:hover {
+      background: #1d8be2;
+    }
+
+    .results {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .result {
+      margin-bottom: 30px;
+    }
+
+    .result a.title {
+      color: #1a0dab;
+      font-size: 18px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .result a.title:hover {
+      text-decoration: underline;
+    }
+
+    .link {
+      color: #006621;
+      font-size: 13px;
+      margin: 3px 0;
+    }
+
+    .desc {
+      color: #545454;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #999;
+      font-size: 13px;
+    }
+
+    .highlight {
+      background-color: #fff9cc;
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="search.html" class="logo">kukuso</a>
+    <div class="search-box">
+      <input type="text" value="晴朗轻体馆" id="searchInput">
+      <button id="searchBtn">搜索</button>
+    </div>
+  </header>
+
+  <div class="results">
+    <!-- 第一条 官方网站 -->
+    <div class="result">
+      <a href="website.html" class="title">晴朗轻体馆 SunnyShape 官方网站入口</a>
+      <div class="link">https://sunnyshape.fit</div>
+      <div class="desc">
+        欢迎访问 <span class="highlight">晴朗轻体馆</span> 官方网站。  
+        了解科学减脂、健康饮食、运动课程与社区活动。  
+        让身体更轻盈，心情更晴朗！
+      </div>
+    </div>
+
+    <div class="result">
+      <a href="#" class="title">晴光健康俱乐部 - 减脂与健身课程</a>
+      <div class="link">https://qingguangfit.com</div>
+      <div class="desc">
+        提供私人教练课程、健康评估与科学饮食指导，助力打造理想身材。
+      </div>
+    </div>
+
+    <div class="result">
+      <a href="#" class="title">城市健身地图 - 晴朗市运动场馆汇总</a>
+      <div class="link">https://fitcitymap.cn/qinglang</div>
+      <div class="desc">
+        收录晴朗市全部健身房、游泳馆与户外跑步路线，一键查看场地信息与评分。
+      </div>
+    </div>
+
+    <div class="result">
+      <a href="#" class="title">如何制定可持续的减肥计划</a>
+      <div class="link">https://fitguide.cn/article/plan</div>
+      <div class="desc">
+        减脂不是短跑，而是一场持久战。  
+        文章教你用科学方式管理热量摄入与训练计划。
+      </div>
+    </div>
+
+    <div class="result">
+      <a href="#" class="title">心理健康与健身：情绪与体重的关系</a>
+      <div class="link">https://mindandfit.org/blogs/health</div>
+      <div class="desc">
+        压力、焦虑与体重管理息息相关。  
+        放松身心，才能让减脂更有效。
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 kukuso 搜索引擎 - 虚构网站示例
+  </footer>
+
+  <script>
+    const searchBtn = document.getElementById('searchBtn');
+    const input = document.getElementById('searchInput');
+
+    function doSearch() {
+      const value = input.value.trim();
+      if (value.includes('艾简霏')) {
+        window.location.href = 'search_result.html';
+      } else if (value.includes('晴朗轻体馆')) {
+        window.location.href = 'search_result2.html';
+      } else {
+        alert('未找到相关结果。');
+      }
+    }
+
+    searchBtn.addEventListener('click', doSearch);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') doSearch();
+    });
+  </script>
+
+</body>
+</html>
