@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>晴朗轻体馆论坛</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans SC", "Segoe UI", sans-serif;
+      background: linear-gradient(to bottom right, #E8F9FD, #FFFBE7);
+      color: #333;
+    }
+
+    header {
+      background: #5BC0EB;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
+
+    .login-btn {
+      background: #FA7921;
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: 0.3s;
+    }
+
+    .login-btn:hover {
+      background: #FDE74C;
+      color: #333;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+      padding: 25px 40px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #5BC0EB;
+      margin-bottom: 25px;
+    }
+
+    .post {
+      border-bottom: 1px solid #eee;
+      padding: 15px 0;
+    }
+
+    .post:last-child {
+      border-bottom: none;
+    }
+
+    .post-title {
+      font-weight: bold;
+      color: #0077cc;
+      font-size: 16px;
+    }
+
+    .post-meta {
+      font-size: 13px;
+      color: #888;
+      margin: 5px 0;
+    }
+
+    .post-content {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    footer {
+      text-align: center;
+      color: #aaa;
+      font-size: 13px;
+      margin: 40px 0 20px 0;
+    }
+
+    /* 登录弹窗 */
+    .login-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-box {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .login-box h3 { color: #5BC0EB; margin-bottom: 1rem; }
+    .login-box input {
+      width: 100%;
+      padding: 0.6rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 0.95rem;
+    }
+    .login-box button {
+      width: 100%;
+      padding: 0.6rem;
+      background: #5BC0EB;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .login-box button:hover { background: #FA7921; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>💬 晴朗轻体馆论坛</h1>
+    <button class="login-btn" id="loginBtn">登录</button>
+  </header>
+
+  <main>
+    <h2>🌤️ 健身与生活分享区</h2>
+
+    <!-- 小艾的帖子 -->
+    <div class="post">
+      <div class="post-title">健身分享</div>
+      <div class="post-meta">👤 艾简霏 ｜ 🗓️ 2024年3月28日</div>
+      <div class="post-content">第一次在论坛发帖，希望和大家一起交流健身心得！💪</div>
+    </div>
+
+    <div class="post">
+      <div class="post-title">健身日常</div>
+      <div class="post-meta">👤 艾简霏 ｜ 🗓️ 2024年4月17日</div>
+      <div class="post-content">今天做了30分钟HIIT训练，差点喘不过气😅 但心率恢复速度有提升！</div>
+    </div>
+
+    <div class="post">
+      <div class="post-title">健身小心得</div>
+      <div class="post-meta">👤 艾简霏 ｜ 🗓️ 2024年4月28日</div>
+      <div class="post-content">发现规律睡眠真的很重要！最近休息充足，训练表现也更稳定。</div>
+    </div>
+
+    <div class="post">
+      <div class="post-title">健身数据分享</div>
+      <div class="post-meta">👤 艾简霏 ｜ 🗓️ 2024年5月9日</div>
+      <div class="post-content">体重下降0.6kg，体脂率下降0.4%，最近状态不错，保持中🔥</div>
+    </div>
+
+    <!-- 其他用户帖子（随机） -->
+    <div class="post"><div class="post-title">我的跑步记录</div><div class="post-meta">👤 健康鸭 ｜ 🗓️ 2024年5月18日</div><div class="post-content">早上5公里慢跑，坚持就是胜利！</div></div>
+    <div class="post"><div class="post-title">今日打卡：力量训练胸背日</div><div class="post-meta">👤 FitMan ｜ 🗓️ 2024年5月19日</div><div class="post-content">卧推70kg 5x5完成！下次冲75！</div></div>
+    <div class="post"><div class="post-title">如何调整饮食周期？</div><div class="post-meta">👤 小健 ｜ 🗓️ 2024年5月21日</div><div class="post-content">求助：锻炼期间晚上饿怎么办？</div></div>
+    <div class="post"><div class="post-title">晨练的好处</div><div class="post-meta">👤 晨光 ｜ 🗓️ 2024年5月8日</div><div class="post-content">每天晨练半小时，精神状态明显变好！</div></div>
+    <div class="post"><div class="post-title">我的减脂计划</div><div class="post-meta">👤 轻风 ｜ 🗓️ 2024年4月2日</div><div class="post-content">目标3个月减5kg，目前已完成一半。</div></div>
+    <div class="post"><div class="post-title">力量训练初体验</div><div class="post-meta">👤 安然 ｜ 🗓️ 2024年4月12日</div><div class="post-content">第一次接触力量训练，酸痛但充实！</div></div>
+    <div class="post"><div class="post-title">蛋白粉该怎么选？</div><div class="post-meta">👤 小K ｜ 🗓️ 2024年3月25日</div><div class="post-content">最近开始补充蛋白粉，求推荐适合女生的品牌。</div></div>
+    <div class="post"><div class="post-title">恢复日不偷懒</div><div class="post-meta">👤 SlowFit ｜ 🗓️ 2024年4月30日</div><div class="post-content">轻度伸展+泡沫轴滚压，让身体放松也重要。</div></div>
+    <div class="post"><div class="post-title">心率区间怎么掌握？</div><div class="post-meta">👤 Rookie ｜ 🗓️ 2024年4月5日</div><div class="post-content">用手表记录心率后发现，燃脂区其实挺窄的。</div></div>
+    <div class="post"><div class="post-title">晒一晒我的饮食计划</div><div class="post-meta">👤 蔬食控 ｜ 🗓️ 2024年5月5日</div><div class="post-content">低油少盐，配合早睡，皮肤都变好了！</div></div>
+    <div class="post"><div class="post-title">第一次打卡健身房</div><div class="post-meta">👤 Joy ｜ 🗓️ 2024年3月30日</div><div class="post-content">紧张但兴奋！希望能坚持下去。</div></div>
+    <div class="post"><div class="post-title">跑步配速求建议</div><div class="post-meta">👤 海风 ｜ 🗓️ 2024年4月9日</div><div class="post-content">5公里平均配速6:20，有提升空间吗？</div></div>
+    <div class="post"><div class="post-title">坚持带来的变化</div><div class="post-meta">👤 Vivi ｜ 🗓️ 2024年5月2日</div><div class="post-content">没想到坚持3个月竟然瘦了8斤！</div></div>
+    <div class="post"><div class="post-title">晚上练还是早上练？</div><div class="post-meta">👤 Leo ｜ 🗓️ 2024年4月6日</div><div class="post-content">感觉晚上练力量更足，但睡前太兴奋睡不着。</div></div>
+    <div class="post"><div class="post-title">减肥打卡Day 50</div><div class="post-meta">👤 MissQ ｜ 🗓️ 2024年5月6日</div><div class="post-content">体重稳步下降中，心情超好！</div></div>
+    <div class="post"><div class="post-title">跑步与音乐</div><div class="post-meta">👤 小宇 ｜ 🗓️ 2024年3月22日</div><div class="post-content">听节奏快的音乐跑步更有动力！🎵</div></div>
+  </main>
+
+  <footer>
+    © 2025 晴朗轻体馆论坛 SunnyShape | 虚构网站示例
+  </footer>
+
+  <!-- 登录弹窗 -->
+  <div class="login-modal" id="loginModal">
+    <div class="login-box">
+      <h3>🔐 登录论坛</h3>
+      <input type="text" id="username" placeholder="请输入账户">
+      <input type="password" id="password" placeholder="请输入密码">
+      <button id="submitLogin">登录</button>
+    </div>
+  </div>
+
+  <script>
+    const loginBtn = document.getElementById('loginBtn');
+    const modal = document.getElementById('loginModal');
+    const submitLogin = document.getElementById('submitLogin');
+
+    loginBtn.addEventListener('click', () => modal.style.display = 'flex');
+    window.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
+
+    // 登录逻辑
+    submitLogin.addEventListener('click', () => {
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+      if (user === '122345' && pass === '19980602') {
+        alert('登录成功，欢迎回来艾简霏！');
+        window.location.href = 'aijianfeiinfo.html';
+      } else {
+        alert('账号或密码错误，请重试！');
+      }
+    });
+  </script>
+
+</body>
+</html>
