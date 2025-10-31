@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>艾简霏的个人主页 - 晴朗轻体馆论坛</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans SC", "Segoe UI", sans-serif;
+      background: linear-gradient(to bottom right, #E8F9FD, #FFFBE7);
+      color: #333;
+    }
+
+    header {
+      background: #5BC0EB;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 20px;
+      letter-spacing: 1px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+      padding: 30px;
+    }
+
+    h2 {
+      color: #5BC0EB;
+      border-left: 6px solid #FA7921;
+      padding-left: 10px;
+      font-size: 20px;
+    }
+
+    .post, .hidden-post, .chat {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 15px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .post-title {
+      font-weight: bold;
+      color: #0077cc;
+      font-size: 16px;
+    }
+
+    .post-meta {
+      font-size: 13px;
+      color: #888;
+      margin: 4px 0;
+    }
+
+    .post-content {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .hidden-post {
+      background: #fdfdfd;
+      cursor: pointer;
+      text-align: center;
+      color: #aaa;
+      transition: 0.3s;
+    }
+
+    .hidden-post:hover {
+      background: #FFF9C4;
+      color: #555;
+    }
+
+    .password-box {
+      display: none;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .password-box input {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 200px;
+      margin-right: 8px;
+    }
+
+    .password-box button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      background: #5BC0EB;
+      color: white;
+      cursor: pointer;
+    }
+
+    .password-box button:hover {
+      background: #FA7921;
+    }
+
+    .chat-box {
+      background: #f9fcff;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    .chat-person {
+      font-weight: bold;
+      color: #FA7921;
+      margin-bottom: 10px;
+    }
+
+    .message {
+      background: #eef9ff;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 8px 0;
+      font-size: 14px;
+    }
+
+    .reply {
+      background: #FFFBE7;
+      text-align: right;
+    }
+
+    footer {
+      text-align: center;
+      color: #999;
+      font-size: 13px;
+      margin: 40px 0 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>🌤️ 艾简霏的个人主页</header>
+
+  <main>
+    <h2>🧾 发帖历史</h2>
+
+    <div class="post">
+      <div class="post-title">健身分享</div>
+      <div class="post-meta">🗓️ 2024年3月28日</div>
+      <div class="post-content">第一次在论坛发帖，希望和大家一起交流健身心得！💪</div>
+    </div>
+
+    <div class="post">
+      <div class="post-title">健身日常</div>
+      <div class="post-meta">🗓️ 2024年4月17日</div>
+      <div class="post-content">今天做了30分钟HIIT训练，差点喘不过气😅 但心率恢复速度有提升！</div>
+    </div>
+
+    <div class="post">
+      <div class="post-title">健身小心得</div>
+      <div class="post-meta">🗓️ 2024年4月28日</div>
+      <div class="post-content">发现规律睡眠真的很重要！最近休息充足，训练表现也更稳定。</div>
+    </div>
+
+    <div class="post">
+      <div class="post-title">健身数据分享</div>
+      <div class="post-meta">🗓️ 2024年5月9日</div>
+      <div class="post-content">体重下降0.6kg，体脂率下降0.4%，最近状态不错，保持中🔥</div>
+    </div>
+
+    <!-- 隐藏帖子 -->
+    <div class="hidden-post" onclick="showPasswordBox(1)">*** ***** ****</div>
+    <div class="password-box" id="pwbox1">
+      <input type="password" id="pw1" placeholder="请输入口令">
+      <button onclick="checkPassword('pw1')">进入</button>
+    </div>
+
+    <div class="hidden-post" onclick="showPasswordBox(2)">*** ***** ****</div>
+    <div class="password-box" id="pwbox2">
+      <input type="password" id="pw2" placeholder="请输入口令">
+      <button onclick="checkPassword('pw2')">进入</button>
+    </div>
+
+    <div class="hidden-post" onclick="showPasswordBox(3)">*** ***** ****</div>
+    <div class="password-box" id="pwbox3">
+      <input type="password" id="pw3" placeholder="请输入口令">
+      <button onclick="checkPassword('pw3')">进入</button>
+    </div>
+
+    <h2>💬 私信记录</h2>
+
+    <div class="chat-box">
+      <div class="chat-person">👤 常建智（jianzhi111@mm.com）</div>
+      <div class="message">你应该试试我们的聚餐活动！大家都在放松享受，完全不会影响减脂效果～</div>
+      <div class="reply">真的吗？听起来不错，我最近确实想换种方式调整心情。</div>
+      <div class="message">当然啦！吃完再回归训练更有效果。到时候老大会发你详细地址。</div>
+      <div class="reply">好呀，那我也想去看看～</div>
+    </div>
+
+    <div class="chat-box">
+      <div class="chat-person">👤 FitLamb（yanghaochi000@mm.com）</div>
+      <div class="message">地址发你了，看完删除。</div>
+      <div class="reply">好的。</div>
+    </div>
+
+  </main>
+
+  <footer>© 2025 晴朗轻体馆论坛 SunnyShape | 虚构页面</footer>
+
+  <script>
+    function showPasswordBox(id) {
+      document.getElementById('pwbox' + id).style.display = 'block';
+    }
+
+    function checkPassword(inputId) {
+      const value = document.getElementById(inputId).value.trim();
+      if (value === 'haimeixianghao') {
+        alert('口令正确，正在跳转...');
+        window.location.href = 'secret_forum.html';
+      } else {
+        alert('口令错误。');
+      }
+    }
+  </script>
+
+</body>
+</html>
