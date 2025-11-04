@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kukugo 地图</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Noto Sans SC", "Segoe UI", sans-serif;
+    background: #eef5f8;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    background: #3ba9ff;
+    color: white;
+    padding: 15px 30px;
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  }
+
+  .search-bar {
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    width: 350px;
+  }
+
+  .search-bar input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 14px;
+  }
+
+  .map-container {
+    flex: 1;
+    position: relative;
+    background: url('https://images.unsplash.com/photo-1502920917128-1aa500764b43?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+    overflow: hidden;
+  }
+
+  .marker {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    background: #fa7921;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 6px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .marker:hover {
+    transform: scale(1.2);
+  }
+
+  .tooltip {
+    display: none;
+    position: absolute;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    padding: 15px;
+    width: 240px;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+  }
+
+  .tooltip h3 {
+    margin-top: 0;
+    color: #fa7921;
+  }
+
+  .tooltip p {
+    font-size: 14px;
+    color: #555;
+  }
+
+  .tooltip button {
+    margin-top: 10px;
+    background: #3ba9ff;
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .tooltip button:hover {
+    background: #1d8be2;
+  }
+
+  footer {
+    text-align: center;
+    padding: 10px;
+    background: #f4fbff;
+    color: #777;
+    font-size: 13px;
+  }
+
+  /* 诡异闪烁效果 */
+  .flash {
+    animation: flash 0.3s ease;
+  }
+
+  @keyframes flash {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(2); }
+    100% { filter: brightness(1); }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div>kukugo 地图</div>
+    <div class="search-bar">
+      <input type="text" placeholder="搜索地点、路线或机构..." />
+    </div>
+  </header>
+
+  <div class="map-container" id="map">
+    <!-- 模拟几个地标 -->
+    <div class="marker" style="top: 40%; left: 30%;" title="晴光健身中心"></div>
+    <div class="marker" style="top: 55%; left: 45%;" title="市立医院"></div>
+    <div class="marker" style="top: 60%; left: 70%;" title="蓝天广场"></div>
+    <div class="marker" style="top: 50%; left: 80%;" id="qqcyMarker" title="青青草原"></div>
+
+    <div class="tooltip" id="qqcyTooltip">
+      <h3>青青草原</h3>
+      <p>⚠ 位置加载失败（error code: Q-Q-C-Y_404）</p>
+      <button id="viewBtn">查看详情</button>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 kukugo map | 数据仅供参考
+  </footer>
+
+<script>
+  const qqcyMarker = document.getElementById('qqcyMarker');
+  const tooltip = document.getElementById('qqcyTooltip');
+  const viewBtn = document.getElementById('viewBtn');
+  const map = document.getElementById('map');
+
+  qqcyMarker.addEventListener('click', () => {
+    tooltip.style.display = 'block';
+  });
+
+  map.addEventListener('click', (e) => {
+    if (e.target !== qqcyMarker && e.target !== tooltip && e.target !== viewBtn) {
+      tooltip.style.display = 'none';
+    }
+  });
+
+  viewBtn.addEventListener('click', () => {
+    window.location.href = 'search_resultqqcy.html';
+  });
+
+  // 页面加载10秒后轻微闪烁
+  setTimeout(() => {
+    document.body.classList.add('flash');
+    setTimeout(() => document.body.classList.remove('flash'), 300);
+  }, 10000);
+</script>
+
+</body>
+</html>
