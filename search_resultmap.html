@@ -21,8 +21,43 @@
     box-shadow: 0 3px 10px rgba(0,0,0,0.1);
   }
 
+  /* 搜索框样式 */
+  .search-box {
+    display: flex;
+    justify-content: center;
+    margin: 25px auto 10px;
+    width: 90%;
+    max-width: 600px;
+    background: white;
+    border-radius: 50px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+
+  .search-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 14px 20px;
+  }
+
+  .search-box button {
+    border: none;
+    background: #3ba9ff;
+    color: white;
+    padding: 0 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+
+  .search-box button:hover {
+    background: #1d8be2;
+  }
+
   .search-summary {
-    margin: 20px auto;
+    margin: 10px auto;
     max-width: 900px;
     padding: 0 20px;
     color: #666;
@@ -31,7 +66,7 @@
 
   .results {
     max-width: 900px;
-    margin: 0 auto 40px;
+    margin: 10px auto 40px;
     padding: 0 20px;
   }
 
@@ -65,6 +100,11 @@
     margin-top: 8px;
   }
 
+  .meta {
+    color: #888;
+    font-size: 12px;
+  }
+
   footer {
     text-align: center;
     font-size: 13px;
@@ -77,31 +117,69 @@
 
   <header>kukuso 搜索</header>
 
+  <!-- 搜索框 -->
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="搜索或输入网址..." />
+    <button id="searchBtn">搜索</button>
+  </div>
+
   <div class="search-summary">
-    🔍 搜索结果：<b>地图</b> — 约 3 条结果 （用时 0.41 秒）
+    🔍 搜索结果：<b>地图</b> — 约 3 条结果 （用时 0.29 秒）
   </div>
 
   <div class="results">
+
     <div class="result">
-      <a href="kukugo_map.html" target="_blank">🌏 kukugo map</a>
-      <p>由 kukuso 出品的轻量级在线地图服务，提供城市全景、地点搜索与卫星影像查看。</p>
-      <p style="color:#888; font-size:12px;">https://www.kukugo.map</p>
+      <a href="kukugo_map.html" target="_blank">🌍 kukugo map - 晴朗市全景地图</a>
+      <p>由 kukuso 提供的本地交互地图服务。支持区域定位、街景浏览与路径规划。</p>
+      <p class="meta">https://www.kukugo.com/map</p>
     </div>
 
     <div class="result">
-      <a href="#">GeoFinder 全球地图系统</a>
-      <p>一款高精度地图平台，支持地形测绘与街景浏览，面向科研与公众用户开放。</p>
-      <p style="color:#888; font-size:12px;">https://www.geofinder-map.com</p>
+      <a href="#">晴朗市运动路线规划图</a>
+      <p>收录城市步行与骑行路线，包含晴光公园、蓝天游泳馆与FitOne健身中心周边地形。</p>
+      <p class="meta">https://fitmap.cn/route/sunshine-city</p>
     </div>
 
     <div class="result">
-      <a href="#">CityVision 城市视界地图</a>
-      <p>提供城市交通、公共设施与步行路径可视化方案，适用于都市生活导航。</p>
-      <p style="color:#888; font-size:12px;">https://www.cityvision-map.net</p>
+      <a href="#">周边景点导航地图</a>
+      <p>可浏览晴朗地区的主要街区与休闲中心，包括健身区与公共广场。</p>
+      <p class="meta">https://map.lifeview.cn/sunnyarea</p>
     </div>
+
   </div>
 
   <footer>© 2025 kukuso 搜索引擎 | 搜索结果仅供参考</footer>
+
+  <!-- 🔍 搜索逻辑脚本（与 search.html 相同） -->
+  <script>
+    const searchBtn = document.getElementById('searchBtn');
+    const input = document.getElementById('searchInput');
+
+    function doSearch() {
+      const value = input.value.trim();
+      if (!value) return;
+
+      if (value.includes('艾简霏')) window.location.href = 'search_result.html';
+      else if (value.includes('晴朗轻体馆')) window.location.href = 'search_result2.html';
+      else if (value.includes('地图')) window.location.href = 'search_resultmap.html';
+      else if (value.includes('常建智')) window.location.href = 'search_resultcjz.html';
+      else if (value.includes('车劲口科技有限公司')) window.location.href = 'search_resultcompany.html';
+      else if (value.includes('杨浩池')) window.location.href = 'search_resultyhc.html';
+      else if (value.includes('卜倾楚')) window.location.href = 'search_resultbqc.html';
+      else if (value.includes('卜芝稻')) window.location.href = 'search_resultbzd.html';
+      else if (value.includes('青青草原')) window.location.href = 'search_resultqqcy.html';
+      else if (value.includes('炮灰乙')) window.location.href = 'search_resultph1.html';
+      else if (value.includes('炮灰甲')) window.location.href = 'search_resultph2.html';
+      else if (value.includes('邮箱')) window.location.href = 'search_resultemail.html';
+      else alert('未找到相关内容。');
+    }
+
+    searchBtn.addEventListener('click', doSearch);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') doSearch();
+    });
+  </script>
 
 </body>
 </html>
