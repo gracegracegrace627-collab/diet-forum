@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kukuso 搜索结果 - 炮灰乙</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Noto Sans SC", "Segoe UI", sans-serif;
+    background: linear-gradient(to bottom right, #f4fbff, #fff9e7);
+    color: #333;
+  }
+
+  header {
+    background: #3ba9ff;
+    color: white;
+    padding: 15px 30px;
+    font-size: 22px;
+    font-weight: bold;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  }
+
+  /* 搜索框样式 */
+  .search-box {
+    display: flex;
+    justify-content: center;
+    margin: 25px auto 10px;
+    width: 90%;
+    max-width: 600px;
+    background: white;
+    border-radius: 50px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+
+  .search-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 14px 20px;
+  }
+
+  .search-box button {
+    border: none;
+    background: #3ba9ff;
+    color: white;
+    padding: 0 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+
+  .search-box button:hover {
+    background: #1d8be2;
+  }
+
+  .search-summary {
+    margin: 10px auto;
+    max-width: 900px;
+    padding: 0 20px;
+    color: #666;
+    font-size: 14px;
+  }
+
+  .results {
+    max-width: 900px;
+    margin: 10px auto 40px;
+    padding: 0 20px;
+  }
+
+  .result {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: 0.3s;
+  }
+
+  .result:hover {
+    box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+  }
+
+  .result a {
+    text-decoration: none;
+    color: #0066cc;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .result a:hover {
+    color: #FA7921;
+  }
+
+  .result p {
+    font-size: 14px;
+    color: #555;
+    margin-top: 8px;
+  }
+
+  .meta {
+    color: #888;
+    font-size: 12px;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 13px;
+    color: #999;
+    margin: 40px 0 20px;
+  }
+</style>
+</head>
+<body>
+
+  <header>kukuso 搜索</header>
+
+  <!-- 搜索框 -->
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="搜索或输入网址..." />
+    <button id="searchBtn">搜索</button>
+  </div>
+
+  <div class="search-summary">
+    🔍 搜索结果：<b>炮灰乙</b> — 约 3 条结果 （用时 0.38 秒）
+  </div>
+
+  <div class="results">
+
+    <div class="result">
+      <a href="#">晴朗郊区火灾遇难者名单（节选）</a>
+      <p>据警方报告，确认身份的六名遇难者中包括一名男性健身教练，代号“乙”。  
+      年龄约34岁，身体状况良好，具体姓名未公开。警方称其并非该聚会的组织者。</p>
+      <p class="meta">https://news.sunnycity.cn/fire-report0529</p>
+    </div>
+
+    <div class="result">
+      <a href="#">健身论坛旧档案 - 用户：burningfit</a>
+      <p>旧版论坛记录显示，用户“burningfit”曾使用昵称“炮灰乙”发帖，内容多为体能训练心得。  
+      其在最后一帖中留言：“再忙也要去，他们说这次的放松活动不一样。”</p>
+      <p class="meta">https://forum-old.sunnyshape.fit/user/burningfit</p>
+    </div>
+
+    <div class="result">
+      <a href="#">相关事件：放纵餐聚会调查</a>
+      <p>社区志愿者提供的资料中提到，火灾前数小时，一群人曾在晴朗市南部“青青草原”聚集。  
+      现场遗留物中包含部分健身数据表与一张写有“fitlamb”字样的便签。</p>
+      <p class="meta">https://communitytrace.net/investigation/fitlamb</p>
+    </div>
+
+  </div>
+
+  <footer>© 2025 kukuso 搜索引擎 | 搜索结果仅供参考</footer>
+
+  <!-- 🔍 搜索逻辑脚本（与 search.html 相同） -->
+  <script>
+    const searchBtn = document.getElementById('searchBtn');
+    const input = document.getElementById('searchInput');
+
+    function doSearch() {
+      const value = input.value.trim();
+      if (!value) return;
+
+      if (value.includes('艾简霏')) window.location.href = 'search_result.html';
+      else if (value.includes('晴朗轻体馆')) window.location.href = 'search_result2.html';
+      else if (value.includes('地图')) window.location.href = 'search_resultmap.html';
+      else if (value.includes('常建智')) window.location.href = 'search_resultcjz.html';
+      else if (value.includes('车劲口科技有限公司')) window.location.href = 'search_resultcompany.html';
+      else if (value.includes('杨浩池')) window.location.href = 'search_resultyhc.html';
+      else if (value.includes('卜倾楚')) window.location.href = 'search_resultbqc.html';
+      else if (value.includes('卜芝稻')) window.location.href = 'search_resultbzd.html';
+      else if (value.includes('青青草原')) window.location.href = 'search_resultqqcy.html';
+      else if (value.includes('炮灰乙')) window.location.href = 'search_resultph1.html';
+      else if (value.includes('炮灰甲')) window.location.href = 'search_resultph2.html';
+      else if (value.includes('邮箱')) window.location.href = 'search_resultemail.html';
+      else alert('未找到相关内容。');
+    }
+
+    searchBtn.addEventListener('click', doSearch);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') doSearch();
+    });
+  </script>
+
+</body>
+</html>
