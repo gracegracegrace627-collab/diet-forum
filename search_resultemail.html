@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kukuso 搜索结果 - 邮箱</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Noto Sans SC", "Segoe UI", sans-serif;
+    background: linear-gradient(to bottom right, #f4fbff, #fff9e7);
+    color: #333;
+  }
+
+  header {
+    background: #3ba9ff;
+    color: white;
+    padding: 15px 30px;
+    font-size: 22px;
+    font-weight: bold;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  }
+
+  .search-summary {
+    margin: 20px auto;
+    max-width: 900px;
+    padding: 0 20px;
+    color: #666;
+    font-size: 14px;
+  }
+
+  .results {
+    max-width: 900px;
+    margin: 0 auto 40px;
+    padding: 0 20px;
+  }
+
+  .result {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: 0.3s;
+  }
+
+  .result:hover {
+    box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+  }
+
+  .result a {
+    text-decoration: none;
+    color: #0066cc;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .result a:hover {
+    color: #FA7921;
+  }
+
+  .result p {
+    font-size: 14px;
+    color: #555;
+    margin-top: 8px;
+  }
+
+  .meta {
+    color: #888;
+    font-size: 12px;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 13px;
+    color: #999;
+    margin: 40px 0 20px;
+  }
+
+  /* 特殊条目样式 */
+  .strange a {
+    color: #a00;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .strange a:hover {
+    color: #fff;
+    background: #a00;
+    padding: 3px 6px;
+    border-radius: 5px;
+  }
+
+  /* 登录弹窗 */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+  }
+
+  .modal-content {
+    background: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    animation: pop 0.3s ease;
+  }
+
+  @keyframes pop {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .modal-content h3 {
+    color: #3ba9ff;
+    margin-bottom: 15px;
+  }
+
+  .modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+
+  .modal-content button {
+    width: 100%;
+    padding: 10px;
+    background: #3ba9ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+  }
+
+  .modal-content button:hover {
+    background: #FA7921;
+  }
+
+  .close-btn {
+    margin-top: 10px;
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 13px;
+  }
+
+  .close-btn:hover {
+    color: #000;
+  }
+</style>
+</head>
+<body>
+
+  <header>kukuso 搜索</header>
+
+  <div class="search-summary">
+    🔍 搜索结果：<b>邮箱</b> — 约 4 条结果 （用时 0.36 秒）
+  </div>
+
+  <div class="results">
+
+    <div class="result">
+      <a href="#">如何注册个人邮箱 - 新手教程</a>
+      <p>一步步教你创建电子邮箱账户，设置密码并绑定手机号码，适合所有新手用户。</p>
+      <p class="meta">https://help.mailguide.cn/article/new-user</p>
+    </div>
+
+    <div class="result">
+      <a href="#">企业邮箱登录入口 - MailCorp</a>
+      <p>登录 MailCorp 企业邮箱系统，支持 Outlook、Foxmail、Exchange 同步。</p>
+      <p class="meta">https://mailcorp.cn/login</p>
+    </div>
+
+    <div class="result">
+      <a href="#">邮箱安全设置指南</a>
+      <p>如何防止邮件泄露、钓鱼邮件与未知来源链接。开启双重认证保护账户安全。</p>
+      <p class="meta">https://safe.mailhelp.com/security</p>
+    </div>
+
+    <div class="result strange">
+      <a id="internalMail">SunnyShape 内部通信系统</a>
+      <p>⚠ 仅限 SunnyShape 内部成员使用。未经授权访问将被记录。</p>
+      <p class="meta">https://mail.sunnyshape.fit/internal</p>
+    </div>
+
+  </div>
+
+  <footer>© 2025 kukuso 搜索引擎 | 搜索结果仅供参考</footer>
+
+  <!-- 登录弹窗 -->
+  <div class="modal" id="loginModal">
+    <div class="modal-content">
+      <h3>🔐 登录内部通信系统</h3>
+      <input type="text" id="username" placeholder="请输入邮箱账号" />
+      <input type="password" id="password" placeholder="请输入密码" />
+      <button id="loginBtn">登录</button>
+      <button class="close-btn" id="closeModal">取消</button>
+    </div>
+  </div>
+
+  <script>
+    const internalMail = document.getElementById('internalMail');
+    const modal = document.getElementById('loginModal');
+    const closeModal = document.getElementById('closeModal');
+    const loginBtn = document.getElementById('loginBtn');
+
+    internalMail.addEventListener('click', () => {
+      modal.style.display = 'flex';
+    });
+
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+
+    loginBtn.addEventListener('click', () => {
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+
+      if (user === 'fitlamb@sunnyshape.com' && pass === '123456') {
+        alert('登录成功，正在跳转内部通信系统...');
+        window.location.href = 'fitlamb_email.html';
+      } else {
+        alert('账号或密码错误，请重试。');
+      }
+    });
+  </script>
+
+</body>
+</html>
