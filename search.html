@@ -15,6 +15,7 @@
       justify-content: center;
       height: 100vh;
       color: #333;
+      transition: 0.3s;
     }
 
     h1 {
@@ -35,6 +36,11 @@
       box-shadow: 0 3px 10px rgba(0,0,0,0.1);
       overflow: hidden;
       transition: 0.3s;
+    }
+
+    .search-box:focus-within {
+      transform: scale(1.03);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
     }
 
     .search-box input {
@@ -74,7 +80,7 @@
 
     .fav-link {
       display: inline-block;
-      margin-top: 8px;
+      margin: 10px;
       padding: 10px 20px;
       background: white;
       border-radius: 30px;
@@ -120,6 +126,7 @@
       border: none;
       width: 100%;
       border-radius: 10px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.15);
     }
 
     .close-btn {
@@ -132,6 +139,11 @@
       cursor: pointer;
       margin-bottom: 10px;
       align-self: flex-end;
+      transition: 0.3s;
+    }
+
+    .close-btn:hover {
+      background: #ff2222;
     }
   </style>
 </head>
@@ -147,6 +159,7 @@
   <div class="favorites">
     <h3>⭐ 收藏链接</h3>
     <a href="#" class="fav-link" id="favLink">艾简霏的社交媒体主页</a>
+    <a href="#" class="fav-link" id="mapLink">kukugo地图</a>
   </div>
 
   <!-- 弹出社交媒体页 -->
@@ -161,18 +174,39 @@
     const searchBtn = document.getElementById('searchBtn');
     const input = document.getElementById('searchInput');
     const favLink = document.getElementById('favLink');
+    const mapLink = document.getElementById('mapLink');
     const modal = document.getElementById('socialModal');
     const closeModal = document.getElementById('closeModal');
 
     // 搜索逻辑
     function doSearch() {
-      const value = input.value.trim();
+      const value = input.value.trim().toLowerCase();
       if (!value) return;
 
-      if (value.includes('艾简霏')) {
+      if (value.includes('艾简霏') || value.includes('aijianfei')) {
         window.location.href = 'search_result.html';
-      } else if (value.includes('晴朗轻体馆')) {
+      } else if (value.includes('晴朗轻体馆') || value.includes('sunnyshape')) {
         window.location.href = 'search_result2.html';
+      } else if (value.includes('地图')) {
+        window.location.href = 'search_resultmap.html';
+      } else if (value.includes('常建智')) {
+        window.location.href = 'search_resultcjz.html';
+      } else if (value.includes('车劲口科技有限公司')) {
+        window.location.href = 'search_resultcompany.html';
+      } else if (value.includes('杨浩池') || value.includes('fitlamb')) {
+        window.location.href = 'search_resultyhc.html';
+      } else if (value.includes('卜倾楚')) {
+        window.location.href = 'search_resultbqc.html';
+      } else if (value.includes('卜芝稻')) {
+        window.location.href = 'search_resultbzd.html';
+      } else if (value.includes('青青草原')) {
+        window.location.href = 'search_resultqqcy.html';
+      } else if (value.includes('炮灰乙')) {
+        window.location.href = 'search_resultph1.html';
+      } else if (value.includes('炮灰甲')) {
+        window.location.href = 'search_resultph2.html';
+      } else if (value.includes('邮箱')) {
+        window.location.href = 'search_resultemail.html';
       } else {
         alert('未找到相关内容。');
       }
@@ -183,7 +217,7 @@
       if (e.key === 'Enter') doSearch();
     });
 
-    // 收藏链接点击 → 弹窗显示社交主页
+    // 收藏链接：艾简霏社交主页 → 弹窗
     favLink.addEventListener('click', (e) => {
       e.preventDefault();
       modal.style.display = 'flex';
@@ -192,6 +226,12 @@
     closeModal.addEventListener('click', () => modal.style.display = 'none');
     window.addEventListener('click', (e) => {
       if (e.target === modal) modal.style.display = 'none';
+    });
+
+    // 收藏链接：kukugo地图 → 新页面打开
+    mapLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.open('kukugo_map.html', '_blank');
     });
   </script>
 
