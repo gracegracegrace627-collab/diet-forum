@@ -25,7 +25,7 @@
       text-shadow: 0 0 3px rgba(0,0,0,0.5);
     }
 
-    /* 右下角时间 */
+    /* 右下角固定时间 */
     .clock {
       position: absolute;
       bottom: 10px;
@@ -73,7 +73,6 @@
       width: 100%;
     }
 
-    /* 鼠标悬停轻微抖动 */
     .icon:hover {
       animation: shake 0.3s ease-in-out;
     }
@@ -86,7 +85,7 @@
       100% { transform: translate(0, 0); }
     }
 
-    /* 弹出层（备忘录） */
+    /* 备忘录弹窗 */
     .calendar-popup {
       display: none;
       position: absolute;
@@ -120,10 +119,35 @@
       border: 1px solid #ddd;
       padding: 6px;
       width: 14%;
+      text-align: center;
     }
 
     .calendar th {
       background-color: #f0f0f0;
+    }
+
+    /* 圈出 2 日 */
+    .calendar td.highlight {
+      position: relative;
+      color: #222;
+      font-weight: bold;
+    }
+
+    .calendar td.highlight::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+      border: 2px solid #FA7921;
+      border-radius: 50%;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.6; }
     }
 
     .note {
@@ -174,15 +198,15 @@
   <!-- 左下角登录信息 -->
   <div class="login-info">已登录: 艾简霏（aijianfei0602@mm.com）</div>
 
-  <!-- 右下角时钟 -->
-  <div class="clock" id="clock"></div>
+  <!-- 右下角固定时间 -->
+  <div class="clock">2024/05/31 星期五</div>
 
   <!-- 备忘录弹窗 -->
   <div class="calendar-popup" id="calendarPopup">
     <h2>2024年6月</h2>
     <table class="calendar">
       <tr><th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th></tr>
-      <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td class="highlight">2</td></tr>
       <tr><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
       <tr><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
       <tr><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td></tr>
@@ -193,7 +217,7 @@
   </div>
 
   <script>
-    // 图标功能
+    // 图标交互
     document.getElementById('browser').addEventListener('click', () => {
       window.location.href = 'search.html';
     });
@@ -209,21 +233,6 @@
     function closeCalendar() {
       document.getElementById('calendarPopup').style.display = 'none';
     }
-
-    // 时钟功能
-    function updateClock() {
-      const now = new Date();
-      const year = now.getFullYear();
-      const month = String(now.getMonth() + 1).padStart(2, '0');
-      const day = String(now.getDate()).padStart(2, '0');
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const seconds = String(now.getSeconds()).padStart(2, '0');
-      document.getElementById('clock').textContent = `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
-    }
-
-    setInterval(updateClock, 1000);
-    updateClock();
   </script>
 </body>
 </html>
