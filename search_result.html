@@ -1,181 +1,186 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>kukuso 搜索结果 - 艾简霏</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Noto Sans SC", "Segoe UI", sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
-    }
-    header {
-      background: white;
-      padding: 1rem 2rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    .logo {
-      color: #3ba9ff;
-      font-size: 28px;
-      font-weight: 700;
-      margin-right: 20px;
-      cursor: pointer;
-      text-decoration: none;
-    }
-    .search-box {
-      flex: 1;
-      max-width: 600px;
-      display: flex;
-      background: #fff;
-      border-radius: 50px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      overflow: hidden;
-    }
-    .search-box input {
-      flex: 1;
-      border: none;
-      outline: none;
-      padding: 10px 15px;
-      font-size: 16px;
-      border-radius: 50px 0 0 50px;
-    }
-    .search-box button {
-      border: none;
-      background: #3ba9ff;
-      color: white;
-      padding: 0 20px;
-      border-radius: 0 50px 50px 0;
-      font-size: 15px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .search-box button:hover {
-      background: #1d8be2;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kukuso 搜索结果 - 艾简霏</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Noto Sans SC", "Segoe UI", sans-serif;
+    background: linear-gradient(to bottom right, #f4fbff, #fff9e7);
+    color: #333;
+  }
 
-    .results {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
+  header {
+    background: #3ba9ff;
+    color: white;
+    padding: 15px 30px;
+    font-size: 22px;
+    font-weight: bold;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  }
 
-    .result {
-      margin-bottom: 30px;
-    }
+  /* 搜索框样式 */
+  .search-box {
+    display: flex;
+    justify-content: center;
+    margin: 25px auto 10px;
+    width: 90%;
+    max-width: 600px;
+    background: white;
+    border-radius: 50px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
 
-    .result a.title {
-      color: #1a0dab;
-      font-size: 18px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+  .search-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 14px 20px;
+  }
 
-    .result a.title:hover {
-      text-decoration: underline;
-    }
+  .search-box button {
+    border: none;
+    background: #3ba9ff;
+    color: white;
+    padding: 0 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+  }
 
-    .link {
-      color: #006621;
-      font-size: 13px;
-      margin: 3px 0;
-    }
+  .search-box button:hover {
+    background: #1d8be2;
+  }
 
-    .desc {
-      color: #545454;
-      font-size: 14px;
-      line-height: 1.5;
-    }
+  .search-summary {
+    margin: 10px auto;
+    max-width: 900px;
+    padding: 0 20px;
+    color: #666;
+    font-size: 14px;
+  }
 
-    footer {
-      text-align: center;
-      padding: 30px;
-      color: #999;
-      font-size: 13px;
-    }
+  .results {
+    max-width: 900px;
+    margin: 10px auto 40px;
+    padding: 0 20px;
+  }
 
-    .highlight {
-      background-color: #fff9cc;
-      padding: 2px 5px;
-      border-radius: 3px;
-    }
-  </style>
+  .result {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: 0.3s;
+  }
+
+  .result:hover {
+    box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+  }
+
+  .result a {
+    text-decoration: none;
+    color: #0066cc;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .result a:hover {
+    color: #FA7921;
+  }
+
+  .result p {
+    font-size: 14px;
+    color: #555;
+    margin-top: 8px;
+  }
+
+  .meta {
+    color: #888;
+    font-size: 12px;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 13px;
+    color: #999;
+    margin: 40px 0 20px;
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    <a href="search.html" class="logo">kukuso</a>
-    <div class="search-box">
-      <input type="text" value="艾简霏" id="searchInput">
-      <button id="searchBtn">搜索</button>
-    </div>
-  </header>
+  <header>kukuso 搜索</header>
 
-  <div class="results">
-    <div class="result">
-      <a href="aijianfeiinfo.html" class="title">艾简霏的个人主页</a>
-      <div class="link">https://kukuso.social/aijianfei</div>
-      <div class="desc">
-        健身打卡、体脂变化、轻食分享。<span class="highlight">艾简霏</span>是晴朗轻体馆的活跃成员，
-        分享每日健身心得与生活记录。点击进入查看她的最新动态。
-      </div>
-    </div>
-
-    <div class="result">
-      <a href="#" class="title">晴朗体育馆官方论坛 - 减脂分享区</a>
-      <div class="link">https://sunnyshape.fit/forum/health</div>
-      <div class="desc">
-        晴朗市第二受欢迎的健康社区，数千名会员每日更新健身计划、饮食打卡与体重曲线。
-      </div>
-    </div>
-
-    <div class="result">
-      <a href="#" class="title">如何安全地降低体脂率</a>
-      <div class="link">https://fitknow.cn/articles/fatloss-guide</div>
-      <div class="desc">
-        专家建议每周体重下降不超过 1%，通过力量训练与热量管理维持代谢健康。
-      </div>
-    </div>
-
-    <div class="result">
-      <a href="#" class="title">晴光市健康生活俱乐部</a>
-      <div class="link">https://qingguanglife.org</div>
-      <div class="desc">
-        推广健康饮食与社区运动文化，提供健身数据记录与线上交流服务。
-      </div>
-    </div>
-
-    <div class="result">
-      <a href="#" class="title">kukuso 健康搜索 · 探索更轻盈的世界</a>
-      <div class="link">https://kukuso.com/fit</div>
-      <div class="desc">
-        搜索健身、饮食、心理健康相关文章，帮助你更好地了解自己的身体。
-      </div>
-    </div>
+  <!-- 搜索框 -->
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="搜索或输入网址..." />
+    <button id="searchBtn">搜索</button>
   </div>
 
-  <footer>
-    © 2025 kukuso 搜索引擎 - 虚构网站示例
-  </footer>
+  <div class="search-summary">
+    🔍 搜索结果：<b>艾简霏</b> — 约 3 条结果 （用时 0.47 秒）
+  </div>
+
+  <div class="results">
+
+    <div class="result">
+      <a href="#" onclick="openSocial()">艾简霏的个人主页</a>
+      <p>晴朗市居民，活跃于健身社群与视频平台，常分享健身打卡、饮食日志与健康心得。  
+      主页最后更新停留在 2024年5月31日，标题为《今天也要轻盈一点》。 </p>
+      <p class="meta">https://social.kukuso.net/aijianfei</p>
+    </div>
+
+    <div class="result">
+      <a href="#">晴朗轻体馆注册信息</a>
+      <p>论坛用户注册资料显示：账号 <b>122345</b> ，昵称 “简霏Fit”，注册时间为2024年3月22日。  
+      邮箱认证账户为 <i>aijianfei0602@mm.com</i> 。</p>
+      <p class="meta">https://forum.sunnyshape.fit/user/122345</p>
+    </div>
+
+    <div class="result">
+      <a href="#">失踪人员通报 - 晴朗市警方</a>
+      <p>5月31日，警方接到报案称市民艾简霏（26岁）失联。最后出现在晴朗西区住宅附近。  
+      目前案件仍在调查中，警方呼吁知情者提供线索。</p>
+      <p class="meta">https://police.sunnycity.cn/report/0531case</p>
+    </div>
+
+  </div>
+
+  <footer>© 2025 kukuso 搜索引擎 | 搜索结果仅供参考</footer>
 
   <script>
+    // 模拟打开社交主页
+    function openSocial() {
+      window.open('ajfsocialmedia.html', '_blank');
+    }
+
+    // 🔍 搜索逻辑脚本（与 search.html 相同）
     const searchBtn = document.getElementById('searchBtn');
     const input = document.getElementById('searchInput');
 
     function doSearch() {
       const value = input.value.trim();
-      if (value === '艾简霏') {
-        window.location.href = 'search_result.html';
-      } else {
-        alert('未找到相关结果。');
-      }
+      if (!value) return;
+
+      if (value.includes('艾简霏')) window.location.href = 'search_result.html';
+      else if (value.includes('晴朗轻体馆')) window.location.href = 'search_result2.html';
+      else if (value.includes('地图')) window.location.href = 'search_resultmap.html';
+      else if (value.includes('常建智')) window.location.href = 'search_resultcjz.html';
+      else if (value.includes('车劲口科技有限公司')) window.location.href = 'search_resultcompany.html';
+      else if (value.includes('杨浩池')) window.location.href = 'search_resultyhc.html';
+      else if (value.includes('卜倾楚')) window.location.href = 'search_resultbqc.html';
+      else if (value.includes('卜芝稻')) window.location.href = 'search_resultbzd.html';
+      else if (value.includes('青青草原')) window.location.href = 'search_resultqqcy.html';
+      else if (value.includes('炮灰乙')) window.location.href = 'search_resultph1.html';
+      else if (value.includes('炮灰甲')) window.location.href = 'search_resultph2.html';
+      else if (value.includes('邮箱')) window.location.href = 'search_resultemail.html';
+      else alert('未找到相关内容。');
     }
 
     searchBtn.addEventListener('click', doSearch);
