@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>卜倾楚的社交主页</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Noto Sans SC", "Segoe UI", sans-serif;
+    background: linear-gradient(to bottom right, #fffaf0, #e9f6ff);
+    color: #333;
+  }
+
+  header {
+    background: #3ba9ff;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  }
+
+  .profile {
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .profile img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  }
+
+  .profile h2 {
+    margin-top: 10px;
+    color: #3ba9ff;
+  }
+
+  .profile p {
+    color: #777;
+  }
+
+  .posts {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 20px;
+  }
+
+  .post {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: 0.3s;
+  }
+
+  .post:hover {
+    transform: scale(1.02);
+  }
+
+  .post h3 {
+    margin: 0;
+    color: #3ba9ff;
+  }
+
+  .post p {
+    color: #555;
+    margin-top: 8px;
+  }
+
+  .secret {
+    background: #fffcf0;
+    border: 2px dashed #f2b84c;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 40px auto;
+    text-align: center;
+    max-width: 600px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .secret:hover {
+    background: #fff5d0;
+    transform: scale(1.03);
+  }
+
+  .secret h3 {
+    margin: 0;
+    color: #b07200;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+    color: #999;
+  }
+
+  /* 弹窗样式 */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+
+  .modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+  }
+
+  .modal-content button {
+    margin-top: 15px;
+    padding: 8px 20px;
+    background: #3ba9ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .modal-content button:hover {
+    background: #FA7921;
+  }
+
+</style>
+</head>
+<body>
+
+<header>卜倾楚的社交主页</header>
+
+<section class="profile">
+  <img src="https://images.unsplash.com/photo-1614289372470-d4eac31d95df?auto=format&fit=crop&w=300&q=80" alt="卜倾楚">
+  <h2>卜倾楚</h2>
+  <p>@qingchu_diary</p>
+</section>
+
+<section class="posts">
+
+  <div class="post">
+    <h3>📅 5月15日 · 记录</h3>
+    <p>“今天阳光很好。她说她要去一个很重要的地方。我笑着说下次一起去。”</p>
+  </div>
+
+  <div class="post">
+    <h3>📖 4月22日 · 随笔</h3>
+    <p>“人有时候真奇怪，越想忘记的事情，越会梦到。”</p>
+  </div>
+
+  <div class="post">
+    <h3>💬 3月19日 · 状态</h3>
+    <p>“有些人消失得太快，连‘再见’都来不及说。”</p>
+  </div>
+
+</section>
+
+<div class="secret" id="secretBtn">
+  <h3>🔒 私密文档（仅自己可见）</h3>
+  <p>点击以验证访问口令</p>
+</div>
+
+<!-- 弹出窗口 -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h3>请输入访问口令</h3>
+    <input type="password" id="passwordInput" placeholder="请输入口令...">
+    <button id="submitPassword">确认</button>
+    <p id="msg" style="color:#FA7921; margin-top:10px;"></p>
+  </div>
+</div>
+
+<footer>© 2025 kukuso 社交系统 | 页面内容由用户发布</footer>
+
+<script>
+  const secretBtn = document.getElementById('secretBtn');
+  const modal = document.getElementById('modal');
+  const submit = document.getElementById('submitPassword');
+  const msg = document.getElementById('msg');
+
+  secretBtn.addEventListener('click', () => {
+    modal.style.display = 'flex';
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) modal.style.display = 'none';
+  });
+
+  submit.addEventListener('click', () => {
+    const value = document.getElementById('passwordInput').value.trim();
+    if (value === 'haimeixianghao') {
+      msg.textContent = '✅ 口令正确，正在加载文档...';
+      setTimeout(() => {
+        window.open('bqcdairy.html', '_blank');
+        modal.style.display = 'none';
+      }, 1200);
+    } else {
+      msg.textContent = '❌ 口令错误，请重试。';
+    }
+  });
+</script>
+
+</body>
+</html>
