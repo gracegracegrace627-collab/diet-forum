@@ -21,7 +21,7 @@
     box-shadow: 0 3px 10px rgba(0,0,0,0.1);
   }
 
-  /* 搜索框样式 */
+  /* 搜索框 */
   .search-box {
     display: flex;
     justify-content: center;
@@ -124,46 +124,37 @@
   </div>
 
   <div class="search-summary">
-    🔍 搜索结果：<b>常建智</b> — 约 4 条结果 （用时 0.37 秒）
+    🔍 搜索结果：<b>常建智</b> — 约 3 条结果 （用时 0.37 秒）
   </div>
 
   <div class="results">
 
     <div class="result">
-      <a href="changjianzhiinfo.html" target="_blank">🌤️ 常建智的个人主页 - 晴朗轻体馆论坛</a>
-      <p>晴朗轻体馆论坛用户 @常建智。发帖内容包含健身心得、放纵餐聚会宣传页等。  
-      现任 <b>车劲口科技有限公司行政主管</b>。</p>
-      <p class="meta">https://www.sunnyshape.fit/user/cjz</p>
+      <a href="cjzsocialmedia.html" target="_blank">常建智的个人主页 - 健身与工作记录</a>
+      <p>常建智（@fit_jianzhi），车劲口科技有限公司行政主管，平时热爱运动与健身分享。  
+      主页内容以健康生活、工作动态为主，偶有团队聚会宣传内容。</p>
+      <p class="meta">https://social.kukuso.net/changjianzhi</p>
     </div>
 
     <div class="result">
-      <a href="#">新闻报道：轻体论坛成员组织春季聚会</a>
-      <p>本地媒体报道指出，由晴朗轻体馆部分成员发起的春季“轻加放纵餐”聚会吸引了大量健身爱好者。  
-      参与者之一为“常建智”，据称其在活动策划中承担宣传工作。</p>
-      <p class="meta">https://news-fitlife.cn/article/0328</p>
+      <a href="#">晴朗轻体馆合作发布会</a>
+      <p>晴朗轻体馆与车劲口科技联合举办“轻加放纵餐活动”宣传会，常建智出席并致辞。  
+      活动主题：身体与心灵的同步释放。</p>
+      <p class="meta">https://news.sunnycity.cn/event-fitdinner</p>
     </div>
 
     <div class="result">
-      <a href="#">人物资料库 - 常建智（行政主管）</a>
-      <p>从公开信息看，常建智自称热爱健身、推崇“觉醒式训练理念”。  
-      有分析人士指出，这一理念与“SunnyShape”组织的宣传用语存在相似。</p>
-      <p class="meta">https://peopledata.io/profile/cjz-info</p>
-    </div>
-
-    <div class="result">
-      <a href="#">论坛记录快照（2024年4月17日）</a>
-      <p>截取自晴朗轻体馆内部服务器的历史缓存：  
-      「fitlamb：确认她的数据稳定后即可通知我。  
-      常建智：明白，已准备好下次邀请。」  
-      —— 该对话疑似涉及私下成员筛选。</p>
-      <p class="meta">https://archive-forum.net/snapshot/fitlamb_cjz</p>
+      <a href="#">员工风采 - 车劲口科技月刊</a>
+      <p>常建智作为公司健身倡导者，多次组织员工健康活动与心理建设培训。  
+      月刊照片中还出现 CEO 杨浩池。</p>
+      <p class="meta">https://company.chejinkou.cn/magazine/staff</p>
     </div>
 
   </div>
 
   <footer>© 2025 kukuso 搜索引擎 | 搜索结果仅供参考</footer>
 
-  <!-- 🔍 搜索逻辑脚本（与 search.html 一致） -->
+  <!-- 🔍 搜索逻辑（与 search.html 相同） -->
   <script>
     const searchBtn = document.getElementById('searchBtn');
     const input = document.getElementById('searchInput');
@@ -172,33 +163,19 @@
       const value = input.value.trim();
       if (!value) return;
 
-      if (value.includes('艾简霏')) {
-        window.location.href = 'search_result.html';
-      } else if (value.includes('晴朗轻体馆')) {
-        window.location.href = 'search_result2.html';
-      } else if (value.includes('地图')) {
-        window.location.href = 'search_resultmap.html';
-      } else if (value.includes('常建智')) {
-        window.location.href = 'search_resultcjz.html';
-      } else if (value.includes('车劲口科技有限公司')) {
-        window.location.href = 'search_resultcompany.html';
-      } else if (value.includes('杨浩池')) {
-        window.location.href = 'search_resultyhc.html';
-      } else if (value.includes('卜倾楚')) {
-        window.location.href = 'search_resultbqc.html';
-      } else if (value.includes('卜芝稻')) {
-        window.location.href = 'search_resultbzd.html';
-      } else if (value.includes('青青草原')) {
-        window.location.href = 'search_resultqqcy.html';
-      } else if (value.includes('炮灰乙')) {
-        window.location.href = 'search_resultph1.html';
-      } else if (value.includes('炮灰甲')) {
-        window.location.href = 'search_resultph2.html';
-      } else if (value.includes('邮箱')) {
-        window.location.href = 'search_resultemail.html';
-      } else {
-        alert('未找到相关内容。');
-      }
+      if (value.includes('艾简霏')) window.location.href = 'search_result.html';
+      else if (value.includes('晴朗轻体馆')) window.location.href = 'search_result2.html';
+      else if (value.includes('地图')) window.location.href = 'search_resultmap.html';
+      else if (value.includes('常建智')) window.location.href = 'search_resultcjz.html';
+      else if (value.includes('车劲口科技有限公司')) window.location.href = 'search_resultcompany.html';
+      else if (value.includes('杨浩池')) window.location.href = 'search_resultyhc.html';
+      else if (value.includes('卜倾楚')) window.location.href = 'search_resultbqc.html';
+      else if (value.includes('卜芝稻')) window.location.href = 'search_resultbzd.html';
+      else if (value.includes('青青草原')) window.location.href = 'search_resultqqcy.html';
+      else if (value.includes('炮灰乙')) window.location.href = 'search_resultph1.html';
+      else if (value.includes('炮灰甲')) window.location.href = 'search_resultph2.html';
+      else if (value.includes('邮箱')) window.location.href = 'search_resultemail.html';
+      else alert('未找到相关内容。');
     }
 
     searchBtn.addEventListener('click', doSearch);
@@ -206,6 +183,9 @@
       if (e.key === 'Enter') doSearch();
     });
   </script>
+
+</body>
+</html>
 
 </body>
 </html>
