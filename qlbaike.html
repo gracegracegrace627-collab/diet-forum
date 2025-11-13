@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>晴朗市 - 虚拟百科</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    background: #f8f9fa;
+    color: #202122;
+  }
+
+  /* 顶部标题栏带背景图 */
+  header {
+    position: relative;
+    background: url('qlbridge.png') no-repeat center center/cover;
+    color: white;
+    padding: 80px 40px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.6);
+  }
+
+  header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+  }
+
+  header h1 {
+    position: relative;
+    z-index: 1;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  header p {
+    position: relative;
+    z-index: 1;
+    font-size: 18px;
+    margin-top: 8px;
+  }
+
+  .layout {
+    display: flex;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px;
+  }
+
+  nav {
+    width: 220px;
+    flex-shrink: 0;
+    padding: 15px;
+    border-right: 1px solid #ddd;
+    background: #fff;
+    height: fit-content;
+    border-radius: 8px;
+  }
+
+  nav h3 {
+    font-size: 16px;
+    margin-top: 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+  }
+
+  nav a {
+    display: block;
+    text-decoration: none;
+    color: #3366cc;
+    margin: 6px 0;
+    font-size: 14px;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  main {
+    flex-grow: 1;
+    padding: 0 30px;
+  }
+
+  h2 {
+    color: #3366cc;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 4px;
+    margin-top: 40px;
+  }
+
+  p {
+    text-indent: 2em;
+    margin: 10px 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  th {
+    background: #f1f3f5;
+  }
+
+  .infobox {
+    float: right;
+    width: 280px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 0 0 20px 20px;
+    font-size: 14px;
+  }
+
+  .infobox h3 {
+    background: #3366cc;
+    color: white;
+    padding: 8px;
+    margin: 0;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .infobox table {
+    width: 100%;
+    border: none;
+  }
+
+  .infobox td {
+    border: none;
+    text-align: left;
+    padding: 6px 12px;
+  }
+
+  .photo {
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  .photo img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  .photo p {
+    text-indent: 0;
+    font-size: 13px;
+    color: #555;
+    margin-top: 6px;
+  }
+
+  footer {
+    text-align: center;
+    color: #777;
+    font-size: 13px;
+    padding: 40px 0;
+    border-top: 1px solid #ddd;
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>晴朗市 Qinglang City</h1>
+    <p>阳光之都 · 健康之城</p>
+  </header>
+
+  <div class="layout">
+    <nav>
+      <h3>目录</h3>
+      <a href="#overview">一、总体概况</a>
+      <a href="#geo">二、地理与气候</a>
+      <a href="#zones">三、区域划分</a>
+      <a href="#culture">四、文化与建设</a>
+      <a href="#landmark">五、地标与活动</a>
+      <a href="#identity">六、城市定位</a>
+    </nav>
+
+    <main>
+      <div class="infobox">
+        <h3>晴朗市信息框</h3>
+        <table>
+          <tr><td><b>国家</b></td><td>华东沿海某省</td></tr>
+          <tr><td><b>行政级别</b></td><td>副省级市</td></tr>
+          <tr><td><b>面积</b></td><td>约 1,780 km²</td></tr>
+          <tr><td><b>人口</b></td><td>约 520 万</td></tr>
+          <tr><td><b>著名景点</b></td><td>青青草原、青岚湾、晴朗塔</td></tr>
+          <tr><td><b>城市口号</b></td><td>阳光之都 · 健康之城</td></tr>
+          <tr><td><b>代表色</b></td><td style="color:#3BA9FF;">晴空蓝 #3BA9FF</td></tr>
+        </table>
+      </div>
+
+      <section id="overview">
+        <h2>一、总体概况</h2>
+        <p>晴朗市位于华东沿海地区，濒临青岚湾，西接低丘缓坡地带，东临大海，是一座兼具现代化与自然景观的副省级沿海城市。地理坐标约为北纬30°—31°、东经121°—122°，属亚热带季风气候区，气候温暖湿润、四季分明。</p>
+        <p>全市下辖7个行政区（含2个郊区与1个新区），常住人口约520万人。</p>
+      </section>
+
+      <section id="geo">
+        <h2>二、地理与气候</h2>
+        <div class="photo">
+          <img src="qqcypark.png" alt="晴朗市公园">
+          <p>▲ 晴朗市中心公园——市民休憩与活动的重要绿地。</p>
+        </div>
+        <p>晴朗市东部为沿海平原，多为填海与滨海沙地，沿岸分布港区、工业园和滨海旅游带；西部为丘陵地带，植被茂盛，是城市的天然生态屏障。著名景点“青青草原营地”与“青松岭国家森林公园”位于此地。</p>
+        <p>年平均气温17.2°C，年降雨量约1300毫米，日照时数2100小时，是全省最“晴朗”的城市。</p>
+      </section>
+
+      <section id="zones">
+        <h2>三、区域划分</h2>
+        <table>
+          <tr><th>区域</th><th>功能定位</th><th>特征描述</th></tr>
+          <tr><td>晴川区</td><td>政府与商业中心</td><td>市政府、金融区与晴朗广场所在地</td></tr>
+          <tr><td>青湾区</td><td>港口与工业区</td><td>青岚港、造船与物流基地</td></tr>
+          <tr><td>松林区</td><td>高新与教育区</td><td>晴朗大学城、科研园、“轻体馆总部”所在</td></tr>
+          <tr><td>西岭区</td><td>住宅与文旅区</td><td>保留民国时期建筑与文化街区</td></tr>
+          <tr><td>青青草原郊区</td><td>生态与休闲区</td><td>著名营地，火灾后被列为重点管控区</td></tr>
+          <tr><td>南河区</td><td>新兴住宅带</td><td>规划滨河公园与地铁线</td></tr>
+          <tr><td>北湾新区</td><td>行政与展览中心</td><td>会展中心、国际体育场、马拉松主跑道起点区</td></tr>
+        </table>
+      </section>
+
+      <section id="culture">
+        <h2>四、文化与建设</h2>
+        <div class="photo">
+          <img src="qlculture.png" alt="晴朗文化中心">
+          <p>▲ 晴朗文化中心广场，市民精神文明活动的重要地标。</p>
+        </div>
+        <p>晴朗市大力推动公共文化基础设施建设，形成“文化馆—展览馆—市民广场—博物馆”四位一体的文化格局。晴朗文化中心、青岚美术馆与阳光剧院均位于市中心文化轴线。</p>
+        <p>每年举办“晴朗文化节”“青岚书展”“城市艺术周”等活动，提升城市文化形象。</p>
+      </section>
+
+      <section id="landmark">
+        <h2>五、地标与活动</h2>
+        <div class="photo">
+          <img src="qlmarathon.png" alt="晴朗马拉松">
+          <p>▲ 晴朗市马拉松比赛现场，城市年度体育盛会。</p>
+        </div>
+        <p>晴朗市马拉松是全国知名赛事，每年5月举行，路线环绕晴朗河与青岚湾。沿途风景秀丽，成为展示城市形象的重要窗口。</p>
+        <p>此外，青岚灯海节、轻体馆论坛节、滨海音乐周等活动让这座城市全年充满活力。</p>
+      </section>
+
+      <section id="identity">
+        <h2>六、城市形象定位</h2>
+        <p><b>城市口号：</b>阳光之都 · 健康之城</p>
+        <p><b>城市性格：</b>开放、理性、温暖、略带神秘</p>
+        <p><b>代表色：</b>晴空蓝（#3BA9FF）</p>
+      </section>
+
+      <footer>
+        © 2025 虚拟百科 · 晴朗市条目  |  本页面由 Qinglang Archive 项目维护
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
